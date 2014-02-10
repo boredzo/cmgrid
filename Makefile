@@ -1,5 +1,8 @@
 all: cmgrid-USLetter.pdf cmgrid-A4.pdf
-.PHONY: all
+.PHONY: all clean
+
+clean:
+	rm cmgrid-USLetter.pdf cmgrid-A4.pdf
 
 cmgrid-USLetter.pdf: cmgrid-USLetter.ps cmgrid.ps
 	pstopdf $< -o $@
