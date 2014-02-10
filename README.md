@@ -7,9 +7,9 @@ This is a pair of PDFs (one US Letter size, one A4) that you can print out in or
 
 ### Example
 
-Here's what the A4-sized ruler grid looks like:
+Here's what it looks like in use:
 
-![Low-res sample of the A4 ruler grid.](cmgrid-A4.png)
+![Photo of a microSD card on the A4 ruler grid.](cmgrid-with-microSD-card.jpg)
 
 ### Open source
 
