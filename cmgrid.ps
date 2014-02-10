@@ -1,0 +1,110 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 612 792
+%%EndComments
+
+/page_width 612.0 def
+/page_height 792.0 def
+
+/pt_per_inch 72.0 def
+/inch { pt_per_inch mul } def
+
+/pt_per_cm pt_per_inch 2.54 div def
+/cm { pt_per_cm mul } def
+/pt_per_mm pt_per_inch 25.4 div def
+/mm { pt_per_mm mul } def
+
+/cols_per_page page_width pt_per_cm div floor 1 sub def
+/rows_per_page page_height pt_per_cm div floor 1 sub def
+
+/left_margin 8.5 inch cols_per_page cm sub 2.0 div def
+/bottom_margin 11.0 inch rows_per_page cm sub 2.0 div def
+
+/mm_marker_height 1 mm def
+/cm_marker_height 1 mm def
+/half_cm_marker_height 2 mm def
+/last_marker_height half_cm_marker_height def
+
+1.0 300.0 div inch setlinewidth
+
+/Helvetica 2 mm selectfont
+
+/str_from_int {
+	cvi 10 string cvs
+} def
+
+/rshow {
+	dup stringwidth
+	pop neg 0 rmoveto
+	show
+} def
+
+/draw_one_cm {
+	0 mm 0 mm moveto
+
+	0 mm cm_marker_height 2 div rmoveto
+	0 mm cm_marker_height neg rlineto
+
+	+1 mm +0.5 mm rmoveto
+	1 1 9 {
+		5 ne {
+			0 mm mm_marker_height 2 div rmoveto
+			0 mm mm_marker_height neg rlineto
+			+1 mm mm_marker_height 2 div rmoveto
+		} {
+			5 mm half_cm_marker_height 2 div moveto
+			0 mm half_cm_marker_height neg rlineto
+			+1 mm half_cm_marker_height 2 div rmoveto
+		} ifelse
+	} for
+
+	stroke
+} def
+
+% number_of_centimeters -> draw_one_row -> -
+% Example: 5 draw_one_row
+% Note: NOT 5 cm draw_one_row (it takes a count, not a length)
+/draw_one_row {
+	gsave
+	1 dict begin
+		/num_cm exch def
+		1 1 num_cm {
+			0.9 cm -2.5 mm moveto
+			str_from_int rshow
+			draw_one_cm
+			1 cm 0 cm translate
+		} for
+	end
+	grestore
+} def
+
+% number_of_columns number_of_rows -> draw_rows -> -
+% Example: 21 27 draw_rows
+/draw_rows {
+	gsave
+	2 dict begin
+		/num_rows exch def
+		/num_cols exch def
+		0 1 num_rows {
+			pop
+			num_cols draw_one_row
+			0 cm 1 cm translate
+		} for
+	end
+	grestore
+} def
+
+left_margin bottom_margin translate
+
+-1 cm 0 cm moveto
++2 cm 0 cm rlineto
+0 cm -1 cm moveto
+0 cm +2 cm rlineto
+stroke
+
+cols_per_page rows_per_page draw_rows
+
+90 rotate
+0 cm cols_per_page neg cm translate
+rows_per_page cols_per_page draw_rows
+
+showpage
