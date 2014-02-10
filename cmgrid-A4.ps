@@ -1,0 +1,17 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 595 842
+%%EndComments
+
+/pt_per_inch 72.0 def
+/inch { pt_per_inch mul } def
+
+/pt_per_cm pt_per_inch 2.54 div def
+/cm { pt_per_cm mul } def
+/pt_per_mm pt_per_inch 25.4 div def
+/mm { pt_per_mm mul } def
+
+% Note: A4 is 210 mm wide, but we use 209 here because otherwise the ruler will go all the way across and leave no margin.
+/page_width 209 mm def
+/page_height 297 mm def
+
+(cmgrid.ps) run
